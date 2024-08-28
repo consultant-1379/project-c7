@@ -1,0 +1,52 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header"></head>
+<body>
+<nav th:replace="fragments/nav"></nav>
+
+<div class="container m-5">
+    <h1 class="display-2 mb-6">Jobs</h1>
+
+    <div class="row">
+
+        <div class="col-12 container">
+            <h3 class="row m-2" th:text="'Total Jobs: '+ ${jobsSize}" />
+            <div class="row m-2" role="toolbar">
+                <div class="btn-group col-5" role="group" aria-label="Basic outlined">
+                    <a type="button" class="btn btn-outline-secondary" th:href="@{'/?period=DAY'}">Day</a>
+                    <a type="button" class="btn btn-outline-secondary" th:href="@{'/?period=WEEK'}">Week</a>
+                    <a type="button" class="btn btn-outline-secondary" th:href="@{'/?period=MONTH'}">Month</a>
+                    <a type="button" class="btn btn-outline-secondary" th:href="@{'/?period=YEAR'}">Year</a>
+                </div>
+            </div>
+
+            <table class="table table-bordered m-2" id="jobs">
+                <thead class="thead-light">
+                <tr class="home">
+                    <th style="text-align:center;" scope="col-2">Name</th>
+                    <th style="text-align:center;" scope="col-3">Number of Deliveries</th>
+                    <th style="text-align:center;" scope="col-2">Last Duration (sec)</th>
+                    <th style="text-align:center;" scope="col-2">Failure rate (%)</th>
+                    <th style="text-align:center;" scope="col-3">Restore Time (sec)</th>
+                </tr>
+                </thead>
+                <tbody th:each="job : ${jobs}">
+                <tr>
+                    <td style="text-align:center;"><b th:text="${job.jobType}"/></td>
+                    <td style="text-align:center;" th:text="${job.numberOfDeliveries}" >0.0 sec</td>
+                    <td style="text-align:center;" th:text="${job.duration}">0.0 sec</td>
+                    <td style="text-align:center;" th:text="${job.failureRate}">0.0 sec</td>
+                    <td style="text-align:center;" th:text="${job.restoreTime}">0.0 sec</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer"></div>
+
+</body>
+</html>
+

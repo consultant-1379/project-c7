@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" xmlns:th="http://www.thymeleaf.org" th:fragment="nav">
+    <a class="navbar-brand" href="/" target="_blank">Software Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul th:if="${#httpServletRequest.requestURI != '/login'}" class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Jobs</a>
+            </li>
+        </ul>
+
+        <form method="POST" th:if="${#httpServletRequest.requestURI != '/login'}" th:action="@{/logout}">
+            <button class="btn btn-secondary">Logout</button>
+        </form>
+    </div>
+</nav>
